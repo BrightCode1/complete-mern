@@ -75,6 +75,7 @@ const registerUser = asyncHandler(async (req, res) => {
         name: saveUser.name,
         email: saveUser.email,
         image: saveUser.image,
+        token: generateToken(saveUser._id),
       },
     });
   } else {
@@ -94,7 +95,13 @@ const successAuth = (req, res) => {
       res.status(200).json({
         success: true,
         message: "Success",
-        data: req.user,
+        data: {
+          id: req.user._id,
+          name: req.user.name,
+          email: req.user.email,
+          image: req.user.image,
+          token: generateToken(req.user._id),
+        },
       });
     } else {
       res.status(500);

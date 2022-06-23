@@ -17,7 +17,16 @@ passport.use(
         email: profile.emails[0].value,
       }).then(async (user) => {
         if (user) {
-          done(null, user);
+          done(null, {
+            success: true,
+            message: "Successful",
+            data: {
+              id: user._id,
+              name: user.name,
+              email: user.email,
+              image: user.image,
+            },
+          });
           return;
         }
 
@@ -32,7 +41,7 @@ passport.use(
         if (saveUser) {
           done(null, {
             success: true,
-            message: "Successfully registered",
+            message: "Successful",
             data: {
               id: saveUser._id,
               name: saveUser.name,
@@ -67,5 +76,18 @@ passport.serializeUser(function (user, done) {
   done(null, user);
 });
 passport.deserializeUser(function (user, done) {
-  done(null, user);
+  User.findById(user._id).then((usr) => {
+    if (user) {
+      done(null, {
+        success: true,
+        message: "Successful",
+        data: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          image: user.image,
+        },
+      });
+    }
+  });
 });
