@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const passport = require("passport");
 const cors = require("cors");
-const cookieSession = require("cookie-session");
+const session = require("express-session");
 
 const paths = require("./config/constants");
 const connectMongoDB = require("./config/dbConnect");
@@ -26,10 +26,11 @@ app.use(
   })
 );
 app.use(
-  cookieSession({
-    name: "session",
-    keys: [""],
-    maxAge: 24 * 60 * 60 * 100,
+  session({
+    secret: process.env.JWT_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
   })
 );
 app.use(passport.initialize());

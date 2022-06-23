@@ -24,8 +24,8 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     failureRedirect: "/login/failed",
-    successRedirect: paths.client_uri,
-  })
+  }),
+  successAuth
 );
 
 //GITHUB AUTHENTICATION
@@ -41,7 +41,7 @@ router.get(
   })
 );
 
-router.get("/login/success", successAuth);
+// router.get("/login/success", successAuth);
 router.get("/login/failed", failedAuth);
 
 module.exports = router;

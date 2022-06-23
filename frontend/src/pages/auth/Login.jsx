@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { PulseLoader } from "react-spinners";
+import * as _email from "email-validator";
+
+import authService from "../../features/auth/authService";
+import { reset } from "../../features/auth/authSlice";
+import Google from "../../img/google.png";
+import Github from "../../img/github.png";
+
 import {
   StyledContainer,
   StyledHeader,
   StyledHeaderText,
   AuthButton,
 } from "./styles";
-import Google from "../../img/google.png";
-import Github from "../../img/github.png";
 
 const Login = () => {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const { email, password } = formData;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { userInfo, message, isLoading, isSuccess, isError } = useSelector(
+    (state) => state.auth
+  );
 
   const onChangeInput = (e) => {
     setFormData({
@@ -23,7 +39,47 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const emailValidate = _email.validate(email);
+
+    if (!emailValidate) {
+      toast.error("Invalid email address");
+      return;
+    }
+
+    if (!password) {
+      toast.error("Fill in all fields!");
+      return;
+    }
+
+    const userData = {
+      email: email,
+      password: password,
+    };
+    dispatch(authService.loginUser(userData));
   };
+
+  const onGoogleLogin = () => {
+    window.open("http://localhost:5000/api/auth/google", "_self");
+  };
+  const onGithubLogin = () => {
+    window.open("http://localhost:5000/api/auth/github", "_self");
+  };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess) {
+      if (userInfo) {
+        toast.success(message);
+        console.log(userInfo);
+      } else {
+        toast.error("Error getting user data");
+      }
+    }
+    dispatch(reset());
+  }, [userInfo, dispatch, navigate, isSuccess, message, isError]);
 
   return (
     <StyledContainer>
@@ -44,9 +100,13 @@ const Login = () => {
           value={formData.password}
           onChange={onChangeInput}
         />
-        <button type="submit" onClick={onSubmit}>
-          Login
-        </button>
+        {!isLoading ? (
+          <button type="submit" onClick={onSubmit}>
+            Login
+          </button>
+        ) : (
+          <PulseLoader size={15} />
+        )}
       </form>
       <StyledHeaderText
         style={{
@@ -63,10 +123,13 @@ const Login = () => {
       >
         OR
       </StyledHeaderText>
-      <AuthButton style={{ backgroundColor: "#df4930" }}>
+      <AuthButton
+        style={{ backgroundColor: "#df4930" }}
+        onClick={onGoogleLogin}
+      >
         <img src={Google} alt="Google" /> Continue with Google
       </AuthButton>
-      <AuthButton style={{ backgroundColor: "#000" }}>
+      <AuthButton style={{ backgroundColor: "#000" }} onClick={onGithubLogin}>
         <img src={Github} alt="Github" /> Continue with Github
       </AuthButton>
     </StyledContainer>

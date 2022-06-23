@@ -16,6 +16,9 @@ export const StyledContainer = styled.div`
 
   form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     input {
       width: 100% !important;
@@ -26,23 +29,27 @@ export const StyledContainer = styled.div`
       font-family: inherit;
       outline: none;
     }
-
-    .upload {
+    label {
       width: 100%;
-      padding: 12px 20px;
-      background-color: #000;
-      border-radius: 5px;
-      color: white;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
-      font-family: inherit;
-      display: flex;
 
-      svg {
-        font-size: 20px;
+      .upload {
+        width: 100%;
+        padding: 12px 20px;
+        background-color: #000;
+        border-radius: 5px;
         color: white;
-        margin-right: 15px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: inherit;
+        display: flex;
+        margin-bottom: 15px;
+
+        svg {
+          font-size: 20px;
+          color: white;
+          margin-right: 15px;
+        }
       }
     }
 
@@ -62,6 +69,10 @@ export const StyledContainer = styled.div`
       &:hover {
         transform: scale(0.95);
       }
+    }
+
+    .css-1xdhyk6 {
+      margin-top: 15px;
     }
   }
 `;

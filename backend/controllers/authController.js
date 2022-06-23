@@ -26,7 +26,6 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Invalid Password");
   }
-
   res.status(200).json({
     success: true,
     message: "Successfully loggedIn",
@@ -92,11 +91,10 @@ const logoutUser = (req, res) => {
 const successAuth = (req, res) => {
   try {
     if (req.user) {
-      console.log(req.user);
       res.status(200).json({
         success: true,
         message: "Success",
-        user: req.user,
+        data: req.user,
       });
     } else {
       res.status(500);
@@ -109,6 +107,8 @@ const successAuth = (req, res) => {
 };
 
 const failedAuth = (req, res) => {
+  console.log(req.user);
+  console.log(req.body);
   res.status(401);
   throw new Error("Login failed, try again");
 };

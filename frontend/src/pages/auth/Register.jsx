@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FiCamera } from "react-icons/fi";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { PulseLoader } from "react-spinners";
+import * as _email from "email-validator";
 
 import { StyledContainer, StyledHeader, StyledHeaderText } from "./styles";
+import authService from "../../features/auth/authService";
+import { reset } from "../../features/auth/authSlice";
 
 const Register = () => {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     image: null,
     password: "",
     cPassword: "",
   });
-  const [fileName, setFileName] = React.useState("Upload Profile Picture");
+  const { name, email, image, password, cPassword } = formData;
+  const [fileName, setFileName] = useState("Upload Profile Picture");
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { userInfo, message, isLoading, isSuccess, isError } = useSelector(
+    (state) => state.auth
+  );
 
   const onChangeInput = (e) => {
     setFormData({
@@ -22,8 +36,43 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    const emailValidate = _email.validate(email);
+
+    if (!name || !image || !password) {
+      toast.error("Fill in all fields!");
+      return;
+    }
+
+    if (!emailValidate) {
+      toast.error("Invalid email address");
+      return;
+    }
+    if (password !== cPassword) {
+      toast.error("Password does not match");
+      return;
+    }
+
+    const userData = {
+      name: name,
+      email: email,
+      image: image.toString(),
+      password: password,
+      type: "email",
+    };
+    dispatch(authService.register(userData));
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess && userInfo) {
+      toast.success(message);
+      navigate("/login");
+    }
+    dispatch(reset());
+  }, [userInfo, dispatch, navigate, isSuccess, message, isError]);
 
   return (
     <StyledContainer>
@@ -77,9 +126,14 @@ const Register = () => {
           value={formData.cPassword}
           onChange={onChangeInput}
         />
-        <button type="submit" onClick={onSubmit}>
-          Register
-        </button>
+
+        {!isLoading ? (
+          <button type="submit" onClick={onSubmit}>
+            Register
+          </button>
+        ) : (
+          <PulseLoader size={15} />
+        )}
       </form>
     </StyledContainer>
   );
