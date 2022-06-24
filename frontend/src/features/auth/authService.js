@@ -46,7 +46,7 @@ const logoutUser = createAsyncThunk(
   }
 );
 
-const loginAuth = async () => {
+const LoginAuth = async () => {
   const response = await axios
     .get("http://localhost:5000/api/auth/login/success", {
       withCredentials: true,
@@ -56,13 +56,15 @@ const loginAuth = async () => {
     });
 
   if (response && response.data) {
-    const { data } = response.data;
-
     if (!response.data.success) {
       toast.error(response.data.message);
       return;
     }
-    localStorage.setItem("user", JSON.stringify(data));
+    const { data } = response.data;
+    if (data) {
+      const setLocal = localStorage.setItem("user", JSON.stringify(data));
+      return setLocal;
+    }
   }
 };
 
@@ -70,7 +72,7 @@ const authService = {
   register,
   loginUser,
   logoutUser,
-  loginAuth,
+  loginAuth: LoginAuth,
 };
 
 export default authService;

@@ -58,24 +58,23 @@ const Login = () => {
     dispatch(authService.loginUser(userData));
   };
 
-  const onGoogleLogin = () => {
+  const onAuthLogin = (auth) => {
     let timer;
     const windowOpen = window.open(
-      "http://localhost:5000/api/auth/google",
+      `http://localhost:5000/api/auth/${auth}`,
       "_blank",
       "width=500,height=600"
     );
     if (windowOpen) {
       timer = setInterval(() => {
         if (windowOpen.closed) {
-          authService.loginAuth();
+          if (authService.loginAuth()) {
+            navigate("/");
+          }
           if (timer) clearInterval(timer);
         }
       }, 500);
     }
-  };
-  const onGithubLogin = () => {
-    window.open("http://localhost:5000/api/auth/github", "_self");
   };
 
   useEffect(() => {
@@ -85,6 +84,7 @@ const Login = () => {
 
     if (isSuccess) {
       if (userInfo) {
+        navigate("/");
       } else {
         toast.error("Error getting user data");
       }
@@ -136,11 +136,14 @@ const Login = () => {
       </StyledHeaderText>
       <AuthButton
         style={{ backgroundColor: "#df4930" }}
-        onClick={onGoogleLogin}
+        onClick={() => onAuthLogin("google")}
       >
         <img src={Google} alt="Google" /> Continue with Google
       </AuthButton>
-      <AuthButton style={{ backgroundColor: "#000" }} onClick={onGithubLogin}>
+      <AuthButton
+        style={{ backgroundColor: "#000" }}
+        onClick={() => onAuthLogin("github")}
+      >
         <img src={Github} alt="Github" /> Continue with Github
       </AuthButton>
     </StyledContainer>

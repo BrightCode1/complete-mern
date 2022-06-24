@@ -73,6 +73,12 @@ passport.use(
         email: profile.emails[0].value,
       }).then(async (user) => {
         if (user) {
+          if (user.userType === "email") {
+            res.status(400);
+            throw new Error(
+              "This account was already created using Email & Password"
+            );
+          }
           done(null, {
             success: true,
             message: "Successful",
