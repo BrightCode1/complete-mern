@@ -11,6 +11,9 @@ const paths = require("../config/constants");
 const { authorizedUser } = require("../handler/authHandler");
 const router = express.Router();
 
+const successLoginUrl = "http://localhost:3000/login/success";
+const errorLoginUrl = "http://localhost:3000/login/error";
+
 router.post("/login", loginUser);
 router.post("/register", registerUser);
 router.post("/logout", authorizedUser, logoutUser);
@@ -23,8 +26,9 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "/login/failed",
-    successRedirect: paths.client_uri,
+    failureRedirect: errorLoginUrl,
+    failureMessage: "Couldn't log in to Google, try again!",
+    successRedirect: successLoginUrl,
   })
 );
 
@@ -36,8 +40,9 @@ router.get(
 router.get(
   "/github/callback",
   passport.authenticate("github", {
-    failureRedirect: "/login/failed",
-    successRedirect: paths.client_uri,
+    failureRedirect: errorLoginUrl,
+    failureMessage: "Couldn't log in to Github, try again!",
+    successRedirect: successLoginUrl,
   })
 );
 

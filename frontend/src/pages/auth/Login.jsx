@@ -59,7 +59,20 @@ const Login = () => {
   };
 
   const onGoogleLogin = () => {
-    window.open("http://localhost:5000/api/auth/google", "_self");
+    let timer;
+    const windowOpen = window.open(
+      "http://localhost:5000/api/auth/google",
+      "_blank",
+      "width=500,height=600"
+    );
+    if (windowOpen) {
+      timer = setInterval(() => {
+        if (windowOpen.closed) {
+          authService.loginAuth();
+          if (timer) clearInterval(timer);
+        }
+      }, 500);
+    }
   };
   const onGithubLogin = () => {
     window.open("http://localhost:5000/api/auth/github", "_self");
@@ -72,8 +85,6 @@ const Login = () => {
 
     if (isSuccess) {
       if (userInfo) {
-        toast.success(message);
-        console.log(userInfo);
       } else {
         toast.error("Error getting user data");
       }

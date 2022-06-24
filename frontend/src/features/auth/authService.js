@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const register = createAsyncThunk(
   "api/auth/register",
@@ -45,10 +46,31 @@ const logoutUser = createAsyncThunk(
   }
 );
 
+const loginAuth = async () => {
+  const response = await axios
+    .get("http://localhost:5000/api/auth/login/success", {
+      withCredentials: true,
+    })
+    .catch((err) => {
+      console.log("Couldn't get user", err);
+    });
+
+  if (response && response.data) {
+    const { data } = response.data;
+
+    if (!response.data.success) {
+      toast.error(response.data.message);
+      return;
+    }
+    localStorage.setItem("user", JSON.stringify(data));
+  }
+};
+
 const authService = {
   register,
   loginUser,
   logoutUser,
+  loginAuth,
 };
 
 export default authService;

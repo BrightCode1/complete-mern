@@ -20,12 +20,18 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid login credentials");
   }
 
+  if (user.userType === "google") {
+    res.status(400);
+    throw new Error("This account was created using Google");
+  }
+
   const verifyPassword = bcrypt.compare(password, user.password);
 
   if (!verifyPassword) {
     res.status(400);
     throw new Error("Invalid Password");
   }
+
   res.status(200).json({
     success: true,
     message: "Successfully loggedIn",
@@ -92,17 +98,7 @@ const logoutUser = (req, res) => {
 const successAuth = (req, res) => {
   try {
     if (req.user) {
-      res.status(200).json({
-        success: true,
-        message: "Success",
-        data: {
-          id: req.user._id,
-          name: req.user.name,
-          email: req.user.email,
-          image: req.user.image,
-          token: generateToken(req.user._id),
-        },
-      });
+      res.status(200).json(req.user);
     } else {
       res.status(500);
       throw new Error("No user found");
@@ -114,8 +110,6 @@ const successAuth = (req, res) => {
 };
 
 const failedAuth = (req, res) => {
-  console.log(req.user);
-  console.log(req.body);
   res.status(401);
   throw new Error("Login failed, try again");
 };
