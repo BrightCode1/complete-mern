@@ -14,7 +14,6 @@ export const ContentContainer = styled.div`
     flex: 4;
     display: flex;
     width: 100%;
-    max-width: calc(100% - 250px);
     //margin-left: 250px;
     background-color: mistyrose;
     height: 100vh;
@@ -27,11 +26,14 @@ export const ContentContainer = styled.div`
       background-color: cornsilk;
     }
     .rightSidebar {
-      flex: 1;
+      flex: 1.5;
       height: 100vh;
       overflow-y: auto;
       padding: 20px;
       background-color: red;
     }
+  }
+
+  @media (max-width: 768px) {
   }
 `;

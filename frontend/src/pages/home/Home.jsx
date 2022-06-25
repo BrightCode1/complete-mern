@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import MobileNavbar from "../../components/Nav/MobileNavbar";
 
-import Navbar from "../../components/Navbar";
-import Sidebar from "../../components/Sidebar";
+import Navbar from "../../components/Nav/Navbar";
+import Sidebar from "../../components/Nav/Sidebar";
 import HomeContent from "./HomeContent";
 
 import { ContentContainer } from "./styles";
@@ -26,6 +27,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
+      <MobileNavbar />
       <ContentContainer>
         <div className="leftSideBar">
           <Sidebar />
