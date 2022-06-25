@@ -35,6 +35,7 @@ passport.use(
             name: profile.displayName,
             email: profile.emails[0].value,
             image: profile.photos[0].value,
+            googleId: profile.id,
             userType: "google",
             password: uuidv4(),
           });
@@ -95,6 +96,7 @@ passport.use(
             name: profile.displayName,
             email: profile.emails[0].value,
             image: profile.photos[0].value,
+            githubId: profile.id,
             userType: "google",
             password: uuidv4(),
           });

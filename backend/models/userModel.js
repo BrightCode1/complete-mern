@@ -24,6 +24,14 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
     },
+    googleId: {
+      type: String,
+      default: "",
+    },
+    githubId: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,
