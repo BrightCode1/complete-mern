@@ -9,6 +9,7 @@ import HomeContent from "./HomeContent";
 import { ContentContainer } from "./styles";
 
 const Home = () => {
+  const [openDrawer, setOpenDrawer] = useState(false);
   // const [user, setUser] = useState(null);
   // const navigate = useNavigate();
 
@@ -27,8 +28,8 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <MobileNavbar />
-      <ContentContainer>
+      <MobileNavbar setOpenDrawer={setOpenDrawer} openDrawer={openDrawer} />
+      <ContentContainer openDrawer={openDrawer}>
         <div className="leftSideBar">
           <Sidebar />
         </div>

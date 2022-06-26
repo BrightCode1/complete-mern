@@ -72,18 +72,55 @@ export const NavbarContainer = styled.div`
 `;
 
 export const MobileNavbarContainer = styled.div`
-  height: 50px;
-  background-color: #fff;
-  width: 100%;
-  overflow: hidden;
-  box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.1);
-  display: none;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 50px;
-  position: sticky;
+  .topNavbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    z-index: 999;
+    box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 25px;
+
+    .avatarLogo {
+      display: flex;
+
+      .drawerProfileImage {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .bottomNavbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    z-index: 999;
+    box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 25px;
+  }
 
   @media (max-width: 768px) {
     display: flex;
+
+    .leftNav {
+      transform: translateX(-100%);
+      transition: all 0.2s ease-in-out;
+    }
   }
 `;
