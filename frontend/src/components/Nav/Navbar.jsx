@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { BsHouseFill, BsSearch, BsChat } from "react-icons/bs";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { BiUserCircle } from "react-icons/bi";
@@ -6,13 +7,17 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
+import { searchBar } from "../../features/nav/navSlice";
 import Logo from "../../img/logo.png";
-import { NavbarContainer } from "./styles";
+import { NavbarContainer } from "./navStyles";
 import IconNumberFloat from "../widget/IconNumberFloat";
-import SearchModal from "../Modal/SearchModal";
 
 const Navbar = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const openSearchModal = () => {
+    dispatch(searchBar());
+  };
   return (
     <>
       <NavbarContainer>
@@ -38,7 +43,7 @@ const Navbar = () => {
           />
         </div>
         <div className="rightNav">
-          <div className="searchContainer" onClick={() => setIsModalOpen(true)}>
+          <div className="searchContainer" onClick={openSearchModal}>
             <div className="searchInputBtn">Search user, books, posts...</div>
             <BsSearch />
           </div>
@@ -52,7 +57,6 @@ const Navbar = () => {
           />
         </div>
       </NavbarContainer>
-      <SearchModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </>
   );
 };

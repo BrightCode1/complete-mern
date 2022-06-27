@@ -1,0 +1,67 @@
+export const postData = [
+  {
+    _id: "62b9a82042493a4d963b3b8e",
+    index: 0,
+    isActive: false,
+    picture: "http://placehold.it/32x32",
+    name: "Sue Bailey",
+    email: "suebailey@ecrater.com",
+    title:
+      "Laboris mollit esse non anim duis nulla incididunt nulla cupidatat fugiat irure. Cillum occaecat incididunt occaecat et consectetur est commodo duis aute proident aliqua ullamco. Ad irure magna anim et. Sunt aliquip nisi aliquip culpa ad minim ea dolor deserunt ullamco ut eiusmod aliquip quis.\r\n",
+    createdAt: "2019-08-14T11:57:19 -01:00",
+    likesCount: 31,
+    commentCount: 100,
+  },
+  {
+    _id: "62b9a820b6e13589a380b14d",
+    index: 1,
+    isActive: true,
+    picture: "http://placehold.it/32x32",
+    name: "Blair Gregory",
+    email: "blairgregory@ecrater.com",
+    title:
+      "Aliquip consectetur dolore elit sint. Nostrud nulla minim ad mollit ex do cillum in dolor elit dolore magna proident. Laboris velit officia amet nostrud laboris eiusmod consectetur magna pariatur minim. Do exercitation tempor qui aute irure laboris. Veniam eu magna deserunt aliqua officia dolore dolore consequat ex cillum laborum laborum veniam cupidatat. Minim magna excepteur aliquip eiusmod esse ad Lorem duis et in excepteur in.\r\n",
+    createdAt: "2014-09-13T12:51:16 -01:00",
+    likesCount: 21,
+    commentCount: 96,
+  },
+  {
+    _id: "62b9a8208b587c3779f32771",
+    index: 2,
+    isActive: false,
+    picture: "http://placehold.it/32x32",
+    name: "Mckenzie Donovan",
+    email: "mckenziedonovan@ecrater.com",
+    title:
+      "Nisi excepteur amet exercitation anim quis est. Quis enim ex fugiat aliquip ipsum ex tempor anim. Labore incididunt anim ad reprehenderit Lorem deserunt. Consequat labore laborum ex incididunt ipsum elit cillum cillum aliqua amet. Officia id exercitation est do esse aliquip quis ad occaecat duis minim dolore quis exercitation. Quis sint occaecat duis consequat commodo aliqua ex ullamco Lorem elit pariatur tempor exercitation. Velit labore deserunt labore eu ullamco ullamco nostrud dolor enim velit non pariatur consectetur minim.\r\n",
+    createdAt: "2020-08-19T04:33:12 -01:00",
+    likesCount: "",
+    commentCount: 841,
+  },
+  {
+    _id: "62b9a820918da748ab5aed19",
+    index: 3,
+    isActive: true,
+    picture: "http://placehold.it/32x32",
+    name: "Wright Willis",
+    email: "wrightwillis@ecrater.com",
+    title:
+      "Veniam aliqua mollit quis deserunt duis enim non nisi exercitation. Quis proident nisi non amet consequat tempor elit est eu id. Voluptate pariatur ut incididunt aliqua nisi mollit excepteur ea deserunt anim et. Aliquip deserunt ipsum mollit aliqua adipisicing. Esse magna adipisicing tempor enim magna esse nostrud reprehenderit officia aliquip anim. Ipsum Lorem Lorem amet ad mollit anim enim veniam est enim ad non quis labore.\r\n",
+    createdAt: "2017-12-12T06:01:11 -01:00",
+    likesCount: 5,
+    commentCount: 163,
+  },
+  {
+    _id: "62b9a8200788616ac48a7c82",
+    index: 4,
+    isActive: false,
+    picture: "http://placehold.it/32x32",
+    name: "Thelma Keller",
+    email: "thelmakeller@ecrater.com",
+    title:
+      "Non ex aliqua anim duis sunt ex dolore ullamco qui. Occaecat adipisicing labore magna do. Sint deserunt labore dolore incididunt nostrud pariatur. Voluptate ea mollit sunt aute ullamco est. Adipisicing minim officia ad veniam reprehenderit est nisi sint incididunt commodo id. Consectetur velit enim tempor culpa nostrud occaecat. Labore ullamco labore sint qui nisi ad sit occaecat nostrud tempor aliqua reprehenderit commodo aliquip.\r\n",
+    createdAt: "2022-04-21T02:51:15 -01:00",
+    likesCount: 31,
+    commentCount: 524,
+  },
+];

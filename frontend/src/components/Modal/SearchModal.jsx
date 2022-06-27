@@ -1,7 +1,10 @@
 import React from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { AiOutlineArrowLeft, AiFillCloseCircle } from "react-icons/ai";
+
+import { searchBar } from "../../features/nav/navSlice";
 
 const customStyles = {
   content: {
@@ -14,6 +17,7 @@ const customStyles = {
     border: "none",
     maxWidth: "500px",
     width: "100%",
+    background: "none",
   },
 };
 
@@ -25,6 +29,7 @@ const SearchContainer = styled.div`
   width: 100%;
   border-radius: 15px;
   box-shadow: 11px 11px 43px -14px rgba(0, 0, 0, 0.45);
+  background-color: #fff;
 
   .searchInput {
     display: flex;
@@ -53,7 +58,10 @@ const SearchContainer = styled.div`
   }
 `;
 
+Modal.setAppElement(document.getElementById("root"));
+
 const SearchModal = ({ isModalOpen, setIsModalOpen }) => {
+  const dispatch = useDispatch();
   const [searchValue, setSearchValue] = React.useState("");
 
   const onChangeValue = (e) => {
@@ -63,11 +71,16 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }) => {
   const clearValue = () => {
     setSearchValue("");
   };
+
+  const closeModal = () => {
+    dispatch(searchBar());
+  };
   return (
     <div>
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
+        onAfterClose={closeModal}
         contentLabel="Example Modal"
         style={customStyles}
       >

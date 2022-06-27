@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import MobileNavbar from "../../components/Nav/MobileNavbar";
+//import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
 
+import MobileNavbar from "../../components/Nav/MobileNavbar";
 import Navbar from "../../components/Nav/Navbar";
 import Sidebar from "../../components/Nav/Sidebar";
-import HomeContent from "./HomeContent";
+import SearchModal from "../../components/Modal/SearchModal";
 
-import { ContentContainer } from "./styles";
+import { ContentContainer } from "./homeStyles";
+import Posts from "../Posts/Posts";
 
 const Home = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const searchBarOpen = useSelector((state) => state.nav.isSearchModalOpen);
+
+  useEffect(() => {
+    setIsModalOpen(searchBarOpen);
+  }, [searchBarOpen]);
   // const [user, setUser] = useState(null);
   // const navigate = useNavigate();
 
@@ -25,6 +35,10 @@ const Home = () => {
 
   //   fetchData();
   // }, [navigate]);
+
+  const closeSidebar = () => {
+    setOpenDrawer(false);
+  };
   return (
     <>
       <Navbar />
@@ -32,14 +46,18 @@ const Home = () => {
       <ContentContainer openDrawer={openDrawer}>
         <div className="leftSideBar">
           <Sidebar />
+          <div className="sidebarBgCover" onClick={closeSidebar}></div>
         </div>
         <div className="mainContent">
           <div className="centerContent">
-            <HomeContent />
+            <Routes>
+              <Route path="/" element={<Posts />} />
+            </Routes>
           </div>
           <div className="rightSidebar">Right center</div>
         </div>
       </ContentContainer>
+      <SearchModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </>
   );
 };

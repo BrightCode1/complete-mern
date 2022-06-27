@@ -42,6 +42,7 @@ export const NavbarContainer = styled.div`
         font-size: 14px;
         color: #aaa;
         font-weight: 300;
+        white-space: nowrap;
       }
 
       svg {
@@ -66,12 +67,14 @@ export const NavbarContainer = styled.div`
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 830px) {
     display: none;
   }
 `;
 
 export const MobileNavbarContainer = styled.div`
+  display: none;
+
   .topNavbar {
     position: fixed;
     top: 0;
@@ -79,8 +82,9 @@ export const MobileNavbarContainer = styled.div`
     width: 100%;
     height: 50px;
     background-color: #fff;
-    z-index: 999;
-    box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    box-shadow: rgb(101 119 134 / 20%) 0px 0px 8px,
+      rgb(101 119 134 / 25%) 0px 1px 3px 1px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -95,7 +99,16 @@ export const MobileNavbarContainer = styled.div`
         height: 30px;
         border-radius: 50%;
         margin-right: 20px;
+        cursor: pointer;
       }
+    }
+  }
+
+  .rightTopNav {
+    cursor: pointer;
+
+    svg {
+      font-size: 20px;
     }
   }
 
@@ -106,16 +119,26 @@ export const MobileNavbarContainer = styled.div`
     width: 100%;
     height: 50px;
     background-color: #fff;
-    z-index: 999;
+    z-index: 5;
     box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 5px 25px;
+
+    .bottomIconContainer {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .bottomIconContainer svg {
+      font-size: 25px;
+    }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 830px) {
     display: flex;
 
     .leftNav {
