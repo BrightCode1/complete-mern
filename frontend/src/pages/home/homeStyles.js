@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ContentContainer = styled.div`
   display: flex;
+  margin-top: 55px;
 
   .leftSideBar {
     flex: 1;
@@ -20,6 +21,26 @@ export const ContentContainer = styled.div`
       flex: 4;
       height: 100vh;
       overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        width: 7px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: #aaa;
+        border-radius: 5px;
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: #999;
+      }
     }
     .rightSidebar {
       flex: 1.5;

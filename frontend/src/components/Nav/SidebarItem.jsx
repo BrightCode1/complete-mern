@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ItemContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 0.8rem 0.5rem;
+  padding: 0.7rem 0.5rem;
   cursor: pointer;
   padding-left: 15px;
 
@@ -14,8 +15,8 @@ const ItemContainer = styled.div`
   }
 
   img {
-    width: 27px;
-    height: 27px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     margin-right: 1.1rem;
   }
@@ -30,13 +31,15 @@ const ItemContainer = styled.div`
   }
 `;
 
-const SidebarItem = ({ isIcon, Icon, text }) => {
+const SidebarItem = ({ isIcon, Icon, text, route }) => {
   return (
-    <ItemContainer>
-      {isIcon && <Icon />}
-      {!isIcon && <img src={Icon} alt={text} />}
-      <p>{text}</p>
-    </ItemContainer>
+    <Link to={route}>
+      <ItemContainer>
+        {isIcon && <Icon />}
+        {!isIcon && <img src={Icon} alt={text} />}
+        <p>{text}</p>
+      </ItemContainer>
+    </Link>
   );
 };
 

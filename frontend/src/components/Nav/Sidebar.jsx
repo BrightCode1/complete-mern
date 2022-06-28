@@ -32,31 +32,65 @@ const Sidebar = () => {
       <SidebarContainer>
         <SidebarItem
           isIcon={false}
-          Icon="https://via.placeholder.com/150"
+          Icon="https://images.pexels.com/photos/11293709/pexels-photo-11293709.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           text="kelechi Isaac"
+          route="/profile"
         />
-        <SidebarItem isIcon={true} Icon={RiHome5Fill} text="Home" />
-        <SidebarItem isIcon={true} Icon={FcSms} text="Messages" />
-        <SidebarItem isIcon={true} Icon={FcAdvertising} text="Annoucement" />
+        <SidebarItem isIcon={true} Icon={RiHome5Fill} text="Home" route="/" />
+        <SidebarItem
+          isIcon={true}
+          Icon={FcSms}
+          text="Messages"
+          route="/message"
+        />
+        <SidebarItem
+          isIcon={true}
+          Icon={FcAdvertising}
+          text="Announcement"
+          route="/announcement"
+        />
         <SidebarItem
           isIcon={true}
           Icon={IoNotificationsCircleSharp}
           text="Notifications"
+          route="/notifications"
         />
         <SidebarItem
           isIcon={true}
           Icon={FcConferenceCall}
           text="School Group"
+          route="/group"
         />
-        <SidebarItem isIcon={true} Icon={FcBookmark} text="Bookmark" />
-        <SidebarItem isIcon={true} Icon={FcRating} text="Ranking" />
-        <SidebarItem isIcon={true} Icon={FcSettings} text="Settings" />
+        <SidebarItem
+          isIcon={true}
+          Icon={FcBookmark}
+          text="Bookmark"
+          route="/bookmark"
+        />
+        <SidebarItem
+          isIcon={true}
+          Icon={FcRating}
+          text="Ranking"
+          route="/ranks"
+        />
+        <SidebarItem
+          isIcon={true}
+          Icon={FcSettings}
+          text="Settings"
+          route="/settings"
+        />
         <SidebarItem
           isIcon={true}
           Icon={FcOnlineSupport}
           text="Help & Support"
+          route="/support"
         />
-        <SidebarItem isIcon={true} Icon={ImUserPlus} text="Invite Friends" />
+        <SidebarItem
+          isIcon={true}
+          Icon={ImUserPlus}
+          text="Invite Friends"
+          route=""
+        />
       </SidebarContainer>
     </>
   );

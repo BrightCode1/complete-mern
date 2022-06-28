@@ -10,7 +10,9 @@ export const NavbarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0px 50px;
-  position: sticky;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   .leftNav {
     flex: 1;

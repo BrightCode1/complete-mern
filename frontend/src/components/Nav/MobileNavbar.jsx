@@ -26,7 +26,7 @@ const MobileNavbar = ({ openDrawer, setOpenDrawer }) => {
       <div className="topNavbar">
         <div className="avatarLogo">
           <img
-            src="https://via.placeholder.com/150"
+            src="https://images.pexels.com/photos/11293709/pexels-photo-11293709.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt="avatar"
             className="drawerProfileImage"
             onClick={() => setOpenDrawer(!openDrawer)}
